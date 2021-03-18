@@ -64,6 +64,7 @@
 
 <script>
 export default {
+
   // asyncData is fetching data before nuxt app finish loading on the browser.
   // It is good for SEO because the data will be loaded first.
   async asyncData({ $axios }) {
@@ -74,7 +75,7 @@ export default {
         products: response.products
       };
     }catch(error) {
-      console.log('error', error);
+      console.log(error);
     }
   }
 }
