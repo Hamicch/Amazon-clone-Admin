@@ -132,20 +132,25 @@ export default {
                   this.fileName = event.target.files[0].name;
           },
           async onAddProduct() {
-                  let data = new FormData();
-                  data.append("title", this.title);
-                  data.append("price", this.price);
-                  data.append("description", this.description);
-                  data.append("ownerID", this.ownerID);
-                  data.append("cartegoryID", this.categoryID);
-                  data.append("stockQuantity", this.stockQuantity);
-                  data.append("photo", this.selectedFile, this.selectedFile.name);
-                //   console.log(FormData());
-
-                  let result = await this.$axios.$post('http://localhost:2021/api/products', data)
-
-
-                  this.$router.push("/")
+                  try {
+                          let data = new FormData();
+                          data.append("title", this.title);
+                          data.append("price", this.price);
+                          data.append("description", this.description);
+                          data.append("ownerID", this.ownerID);
+                          data.append("cartegoryID", this.categoryID);
+                          data.append("stockQuantity", this.stockQuantity);
+                          data.append("photo", this.selectedFile, this.selectedFile.name);
+                        //   console.log(FormData());
+        
+                          let result = await this.$axios.$post('http://localhost:2021/api/products', data)
+        
+        
+                          this.$router.push("/")
+                          
+                  } catch (error) {
+                          console.log(error);
+                  }
           }
   }
 
