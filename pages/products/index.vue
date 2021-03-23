@@ -145,7 +145,8 @@ export default {
         
                           let result = await this.$axios.$post('http://localhost:2021/api/products', data)
         
-        
+                                console.log(result);
+
                           this.$router.push("/")
                           
                   } catch (error) {
@@ -155,4 +156,4 @@ export default {
   }
 
 }
-</script>       
+</script>

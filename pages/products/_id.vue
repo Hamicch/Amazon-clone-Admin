@@ -35,29 +35,29 @@
                                                         <!-- Title Input -->
                                                 <div class="a-spacing-top-medium">
                                                         <label style="margin-bottom: 0px;">Title</label>
-                                                        <input type="text" class="a-input-text" style="width: 100%" v-model="title" :placeholder="product.title" />
+                                                        <input type="text" class="a-input-text" style="width: 100%" v-model="title" :placeholder="product.title">
                                                 </div>
 
                                                         <!-- Price Input -->
                                                 <div class="a-spacing-top-medium">
                                                         <label style="margin-bottom: 0px;">Price</label>
-                                                        <input type="number" class="a-input-text" style="width: 100%" v-model="price" :placeholder="product.price" />
+                                                        <input type="number" class="a-input-text" style="width: 100%" v-model="price" :placeholder="product.price">
                                                 </div>
 
                                                         <!-- Stock Quantity Input -->
                                                 <div class="a-spacing-top-medium">
                                                         <label style="margin-bottom: 0px;">Stock Quantity</label>
-                                                        <input type="number" class="a-input-text" style="width: 100%" v-model="stockQuantity" :placeholder="product.stockQuantity" />
+                                                        <input type="number" class="a-input-text" style="width: 100%" v-model="stockQuantity" :placeholder="product.stockQuantity">
                                                 </div>
 
                                                         <!-- Description textarea -->
                                                 <div class="a-spacing-top-medium">
                                                         <label style="margin-bottom: 0px;">Description</label>
                                                         <textarea 
-                                                        cols="30" 
+                                                        cols="10" 
                                                         rows="10" 
                                                         style="width: 100%" 
-                                                        :placeholder="product.decsription"
+                                                        :placeholder="product.description"
                                                         v-model="description"></textarea>
                                                 </div>
 
@@ -77,7 +77,7 @@
                                                 <div class="a-spacing-top-large" style="margin-bottom: 100px">
                                                         <span class="a-button-register">
                                                                 <span class="a-button-inner">
-                                                                        <span class="a-button-text" @click="onUpdateProduct">Update product</span>
+                                                                        <span class="a-button-text" @click="onAddProduct">Add product</span>
                                                                 </span>
                                                         </span>
                                                 </div>
@@ -103,7 +103,8 @@ export default {
               owners,
               product
       ])
-      console.log(productResponse);
+      console.log('pro 1',productResponse);
+      console.log('pro',productResponse.product);
 
       return {
         categories: catResponse.categories,
@@ -124,7 +125,8 @@ export default {
                   stockQuantity: "",
                   description: "",
                   selectedFile: null,
-                  fileName: ""
+                  fileName: "",
+                  sakamanje: 'Rolls Royce'
           }
   },
 
@@ -134,7 +136,7 @@ export default {
                   console.log(this.selectedFile);
                   this.fileName = event.target.files[0].name;
           },
-          async onUpdateProduct() {
+          async onAddProduct() {
                   try {
                           let data = new FormData();
                           data.append("title", this.title);
@@ -146,8 +148,8 @@ export default {
                           data.append("photo", this.selectedFile, this.selectedFile.name);
                         //   console.log(FormData());
         
-                          let result = await this.$axios.$put(`http://localhost:2021/api/products/${this.$route.params.id}`, data)
-        
+                          let result = await this.$axios.$put('http://localhost:2021/api/products', data)
+
                           this.$router.push("/")
                           
                   } catch (error) {
@@ -157,14 +159,4 @@ export default {
   }
 
 }
-</script>
-
-<style >
-::-moz-placeholder {
-        color: #636c72
-}
-
-::-webkit-input-placeholder {
-        color: #636c72
-}
-</style>
+</script>       
