@@ -52,7 +52,7 @@ export default {
    async asyncData({ $axios }) {
     try{
       let response = await $axios.$get('http://localhost:2021/api/owners')
-//       console.log(response);
+      console.log(response);
       return {
               owners: response.owners
       }
@@ -66,7 +66,8 @@ export default {
                   name: "",
                   about: "",
                   selectedFile: null,
-                  fileName: ""
+                  fileName: "",
+                  someshit: "Some Shit"
           }
   },
 
@@ -79,17 +80,16 @@ export default {
           
           async onAddOwner() {
                   try {
-                           let data = new FormData();
+                          let data = new FormData();
                           data.append("name", this.name);
                           data.append("about", this.about);
                           data.append("photo", this.selectedFile, this.selectedFile.name);
-                        //   console.log(FormData());
         
                           let response = await this.$axios.$post('http://localhost:2021/api/owners', data)
         
-        
-                          this.owners.push(this.name)
-                          console.log(this.owners);
+                        console.log(this.name );
+                          this.owners.push({name: this.name})
+                        //   console.log(this.owners);
 
                   } catch (error) {
                           console.log(error);
